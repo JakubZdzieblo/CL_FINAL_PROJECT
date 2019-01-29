@@ -2,23 +2,18 @@ package pl.coderslab.app;
 
 
 import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.methods.*;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.codehaus.jackson.map.ObjectMapper;
-import pl.coderslab.dto.GamesSearchListElementDTO;
-import pl.coderslab.dto.GamesSearchResultDTO;
+import pl.coderslab.dto.*;
 
-import java.io.*;
+import java.io.IOException;
 
-public class Test {
+public class TestGameDetails {
 
-    private static String searchUrl = "https://www.giantbomb.com/api/search/?api_key=a27aa22010c29559d6fec67de238b8d50337ff34&" +
-            "format=json&query=%22metal%22&limit=20&resources=game&" +
-            "field_list=id,name,deck,resource_type,original_release_date";
-
-    private static String listUrl = "https://www.giantbomb.com/api/games/?api_key=a27aa22010c29559d6fec67de238b8d50337ff34&" +
-            "format=json&filter=platforms:146,original_release_date:2018-01-01|2018-12-31&limit=20&" +
-            "field_list=id,name,deck,resource_type,original_release_date";
+    private static String gameUrl = "https://www.giantbomb.com/api/game/3030-31643/?api_key=a27aa22010c29559d6fec67de238b8d50337ff34&" +
+            "format=json&" +
+            "field_list=id,name,deck,description,image,original_release_date,concepts,genres,locations,objects,publishers,similar_games,themes";
 
 
     public static void main(String[] args) {
@@ -28,7 +23,7 @@ public class Test {
         // Create a method instance.
         GetMethod method = new GetMethod();
         try {
-            method.setURI(new URI(listUrl, false));
+            method.setURI(new URI(gameUrl, false));
         } catch (URIException e) {
             e.printStackTrace();
         }
@@ -53,7 +48,7 @@ public class Test {
 
             ObjectMapper mapper = new ObjectMapper();
             String jsonInString = new String(responseBody);
-            GamesSearchResultDTO result = mapper.readValue(jsonInString, GamesSearchResultDTO.class);
+            GameResultDTO result = mapper.readValue(jsonInString, GameResultDTO.class);
 
             System.out.println(result.getError());
             System.out.println(result.getLimit());
@@ -62,12 +57,14 @@ public class Test {
             System.out.println(result.getNumber_of_total_results());
             System.out.println(result.getStatus_code());
 
+            GameDetailsDTO game = result.getResults();
 
-            for (GamesSearchListElementDTO el : result.getResults()) {
-                System.out.println(el.getName());
-                System.out.println(el.getDeck());
-                System.out.println(el.getOriginal_release_date());
-            }
+            System.out.println(game.getName());
+            System.out.println(game.getDeck());
+            System.out.println(game.getDescription());
+            System.out.println(game.getOriginal_release_date());
+
+
 
 
         } catch (HttpException e) {

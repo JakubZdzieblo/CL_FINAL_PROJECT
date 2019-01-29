@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GamesSearchResult {
+public class GameResultDTO {
 
     String error;
     int limit;
@@ -14,9 +14,9 @@ public class GamesSearchResult {
     int number_of_page_results;
     int number_of_total_results;
     int status_code;
-    List<GamesSearchListElement> results = new ArrayList<>();
+    GameDetailsDTO results;
 
-    public GamesSearchResult() {
+    public GameResultDTO() {
     }
 
     public String getError() {
@@ -67,11 +67,11 @@ public class GamesSearchResult {
         this.status_code = status_code;
     }
 
-    public List<GamesSearchListElement> getResults() {
+    public GameDetailsDTO getResults() {
         return results;
     }
 
-    public void setResults(List<GamesSearchListElement> results) {
+    public void setResults(GameDetailsDTO results) {
         this.results = results;
     }
 }

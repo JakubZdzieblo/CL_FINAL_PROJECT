@@ -3,13 +3,15 @@ package pl.coderslab.dto;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GamesSearchListElement {
+public class GamesSearchListElementDTO {
 
     Long id;
     String name;
+    String deck;
     String resource_type;
+    String original_release_date;
 
-    public GamesSearchListElement() {
+    public GamesSearchListElementDTO() {
     }
 
 
@@ -29,12 +31,28 @@ public class GamesSearchListElement {
         this.name = name;
     }
 
+    public String getDeck() {
+        return deck;
+    }
+
+    public void setDeck(String deck) {
+        this.deck = deck;
+    }
+
     public String getResource_type() {
         return resource_type;
     }
 
     public void setResource_type(String resource_type) {
         this.resource_type = resource_type;
+    }
+
+    public String getOriginal_release_date() {
+        return original_release_date;
+    }
+
+    public void setOriginal_release_date(String original_release_date) {
+        this.original_release_date = original_release_date;
     }
 
     @Override
