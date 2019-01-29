@@ -32,6 +32,8 @@ public class Game {
 
     private String imageUrl;
     @ManyToMany
+    private List<Platform> platforms = new ArrayList<>();
+    @ManyToMany
     private List<Concept> concepts = new ArrayList<>();
     @ManyToMany
     private List<Genre> genres = new ArrayList<>();
@@ -115,6 +117,14 @@ public class Game {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Platform> getPlatforms() {
+        return platforms;
+    }
+
+    public void setPlatforms(List<Platform> platforms) {
+        this.platforms = platforms;
     }
 
     public List<Concept> getConcepts() {

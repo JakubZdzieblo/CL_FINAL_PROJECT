@@ -13,7 +13,7 @@ public class TestGameDetails {
 
     private static String gameUrl = "https://www.giantbomb.com/api/game/3030-31643/?api_key=a27aa22010c29559d6fec67de238b8d50337ff34&" +
             "format=json&" +
-            "field_list=id,name,deck,description,image,original_release_date,concepts,genres,locations,objects,publishers,similar_games,themes";
+            "field_list=id,name,deck,description,image,original_release_date,platforms,concepts,genres,locations,objects,publishers,similar_games,themes";
 
 
     public static void main(String[] args) {

@@ -23,6 +23,7 @@ public class FormatterConfig implements WebMvcConfigurer {
         registry.addConverter(gameConverter());
         registry.addConverter(gameObjectConverter());
         registry.addConverter(locationConverter());
+        registry.addConverter(platformConverter());
         registry.addConverter(publisherConverter());
         registry.addConverter(themeConverter());
         registry.addConverter(userConverter());
@@ -56,6 +57,11 @@ public class FormatterConfig implements WebMvcConfigurer {
     @Bean
     public LocationConverter locationConverter(){
         return new LocationConverter();
+    }
+
+    @Bean
+    public PlatformConverter platformConverter(){
+        return new PlatformConverter();
     }
 
     @Bean

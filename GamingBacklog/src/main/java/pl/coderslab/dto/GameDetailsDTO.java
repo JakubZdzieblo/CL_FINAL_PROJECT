@@ -14,6 +14,7 @@ public class GameDetailsDTO {
     String description;
     String original_release_date;
     GameDetailsImagesDTO image;
+    List<GameDetailsPlatformsDTO> platforms = new ArrayList<>();
     List<GameDetailsConceptsDTO> concepts = new ArrayList<>();
     List<GameDetailsGenresDTO> genres = new ArrayList<>();
     List<GameDetailsLocationsDTO> locations = new ArrayList<>();
@@ -71,6 +72,14 @@ public class GameDetailsDTO {
 
     public void setImage(GameDetailsImagesDTO image) {
         this.image = image;
+    }
+
+    public List<GameDetailsPlatformsDTO> getPlatforms() {
+        return platforms;
+    }
+
+    public void setPlatforms(List<GameDetailsPlatformsDTO> platforms) {
+        this.platforms = platforms;
     }
 
     public List<GameDetailsConceptsDTO> getConcepts() {
