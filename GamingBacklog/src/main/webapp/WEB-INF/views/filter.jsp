@@ -43,8 +43,8 @@
     <form method="post" action="filter">
         <div class="row justify-content-center">
         <div class="form-group col-lg-6">
-            <select class="custom-select" name="platform">
-                <option selected="">Select platform</option>
+            <select class="custom-select" name="platform" required="required">
+                <option selected="" disabled="disabled">Select platform</option>
                 <c:forEach items="${platforms}" var="platform">
                 <option value="${platform.gbId}">${platform.abbreviation} - ${platform.name}</option>
                 </c:forEach>
@@ -53,11 +53,11 @@
         <div class="row justify-content-center">
         <div class="form-group">
             <label class="col-form-label" for="dateFrom">Release date between:</label>
-            <input type="date" class="form-control col-lg-10" placeholder="Default input" id="dateFrom" name="dateFrom">
+            <input type="date" required="required" class="form-control col-lg-12" placeholder="Default input" id="dateFrom" name="dateFrom">
         </div>
             <div class="form-group">
             <label class="col-form-label" for="dateTo">and:</label>
-            <input type="date" class="form-control col-lg-10" placeholder="Default input" id="dateTo" name="dateTo">
+            <input type="date" required="required" class="form-control col-lg-12" placeholder="Default input" id="dateTo" name="dateTo">
         </div>
         </div>
         <div class="row justify-content-center">
@@ -65,5 +65,8 @@
     </form>
     </div>
 </div>
+<br><br>
+<p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>
+
 </body>
 </html>

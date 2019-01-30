@@ -3,10 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dto.GameDetailsDTO;
 import pl.coderslab.dto.GamesSearchListElementDTO;
 import pl.coderslab.entity.Game;
@@ -15,6 +12,7 @@ import pl.coderslab.repository.*;
 import pl.coderslab.service.DBService;
 import pl.coderslab.service.GBQuery;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -52,5 +50,15 @@ public class HomeController {
         List<Platform> platforms = platformRepository.findAll();
         model.addAttribute("platforms", platforms);
         return("filter");
+    }
+
+    @PostMapping("/filter")
+    public String filter(Model model, @RequestParam int platform, @RequestParam String dateFrom, @RequestParam String dateTo){
+
+        LocalDate date1 = LocalDate.parse(dateFrom);
+        LocalDate date2 = LocalDate.parse(dateTo);
+        List<GamesSearchListElementDTO> list = gbQuery.gameFilterResult(platform, date1, date2, 20);
+        model.addAttribute("list", list);
+        return "results";
     }
 }

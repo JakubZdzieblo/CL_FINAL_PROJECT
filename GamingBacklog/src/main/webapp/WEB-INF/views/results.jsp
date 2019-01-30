@@ -44,7 +44,7 @@
         <tr>
             <th scope="col">Game title</th>
             <th scope="col">Short info</th>
-            <th scope="col">Release date</th>
+            <th scope="col" style="min-width: 150px">Release date</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -60,5 +60,8 @@
         </tr>
         </c:forEach>
 </div>
+<br><br>
+<p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>
+
 </body>
 </html>
