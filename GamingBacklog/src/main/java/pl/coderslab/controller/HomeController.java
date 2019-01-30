@@ -1,5 +1,6 @@
 package pl.coderslab.controller;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import pl.coderslab.repository.*;
 import pl.coderslab.service.DBService;
 import pl.coderslab.service.GBQuery;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -32,8 +34,7 @@ public class HomeController {
 
     @RequestMapping("")
     public String home(Model model){
-        GameDetailsDTO gameDetailsDTO = gbQuery.randomGameDetails();
-        Game game = dbService.getGameFromDTO(gameDetailsDTO);
+        Game game = dbService.randomGame();
         model.addAttribute("game", game);
         return "/index";
     }
@@ -60,5 +61,17 @@ public class HomeController {
         List<GamesSearchListElementDTO> list = gbQuery.gameFilterResult(platform, date1, date2, 20);
         model.addAttribute("list", list);
         return "results";
+    }
+
+    @Transactional
+    @GetMapping("/details")
+    public String details(Model model, @RequestParam Long gbId){
+        Game game = dbService.getGame(gbId);
+        Hibernate.initialize(game.getPlatforms());
+        Hibernate.initialize(game.getConcepts());
+        Hibernate.initialize(game.getGenres());
+        Hibernate.initialize(game.getThemes());
+        model.addAttribute("game", game);
+        return("details");
     }
 }

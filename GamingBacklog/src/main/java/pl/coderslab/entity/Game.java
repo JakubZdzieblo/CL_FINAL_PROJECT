@@ -199,6 +199,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return gbId + " " + name;
+        return "gbId=" + gbId +" name=" + name;
     }
 }

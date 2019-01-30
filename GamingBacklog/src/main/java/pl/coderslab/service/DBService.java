@@ -1,13 +1,16 @@
 package pl.coderslab.service;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.dto.*;
 import pl.coderslab.entity.*;
 import pl.coderslab.repository.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DBService {
 
@@ -41,15 +44,25 @@ public class DBService {
     public DBService() {
     }
 
-    public Game getGameFromDTO(GameDetailsDTO gameDTO) {
+    @Transactional
+    public Game randomGame(){
+        Random random = new Random();
+        int gbId = random.nextInt(66586);
+        return getGame(Integer.toUnsignedLong(gbId));
+    }
 
-        Game game = gameRepository.findByGbId(gameDTO.getId());
+    @Transactional
+    public Game getGame(Long gbId) {
+
+        Game game = gameRepository.findByGbId(gbId);
 
         if (game != null){
             return game;
         } else {
             game = new Game();
         }
+
+        GameDetailsDTO gameDTO = gbQuery.gameDetails(gbId);
 
         game.setGbId(gameDTO.getId());
         game.setName(gameDTO.getName());

@@ -14,37 +14,12 @@ import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.codehaus.jackson.map.ObjectMapper;
+import pl.coderslab.entity.Game;
 
 
 public class GBQuery {
 
     public GBQuery() {
-    }
-
-    public void main(String[] args) {
-//        LocalDate date1 = LocalDate.of(1980,10,10);
-//        LocalDate date2 = LocalDate.of(1990,12,01);
-//
-//        List<GamesSearchListElementDTO> res1 = gameFilterResult(94, date1, date2, 20);
-//        List<GamesSearchListElementDTO> res2 = gameSearchResult("Gear", 20);
-
-//        System.out.println(res1);
-//        System.out.println(res2);
-
-
-        GameDetailsDTO gdto = gameDetails(46006L);
-        System.out.println(gdto.getDeck());
-        System.out.println(gdto.getOriginal_release_date());
-
-        for (GameDetailsPlatformsDTO el : gdto.getPlatforms()) {
-            System.out.println(el.getAbbreviation());
-        }
-
-        for (GameDetailsConceptsDTO el : gdto.getConcepts()) {
-            System.out.println(el.getName());
-        }
-
-
     }
 
     public List<GamesSearchListElementDTO> gameFilterResult(int platform_id, LocalDate releaseDateAfter, LocalDate releaseDateBefore, int limit) {
@@ -67,12 +42,6 @@ public class GBQuery {
                 "field_list=id,name,deck,resource_type,original_release_date";
 
         return getGamesSearchListElementDTOS(url);
-    }
-
-    public GameDetailsDTO randomGameDetails(){
-        Random random = new Random();
-        int gbId = random.nextInt(66586);
-        return gameDetails(Integer.toUnsignedLong(gbId));
     }
 
     public GameDetailsDTO gameDetails(Long gbId) {
