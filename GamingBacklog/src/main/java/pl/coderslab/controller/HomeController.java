@@ -9,6 +9,7 @@ import pl.coderslab.dto.GameDetailsDTO;
 import pl.coderslab.dto.GamesSearchListElementDTO;
 import pl.coderslab.entity.Game;
 import pl.coderslab.entity.Platform;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.*;
 import pl.coderslab.service.DBService;
 import pl.coderslab.service.GBQuery;
@@ -25,6 +26,9 @@ public class HomeController {
 
     @Autowired
     PlatformRepository platformRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     GBQuery gbQuery;
@@ -70,8 +74,23 @@ public class HomeController {
         Hibernate.initialize(game.getPlatforms());
         Hibernate.initialize(game.getConcepts());
         Hibernate.initialize(game.getGenres());
+        Hibernate.initialize(game.getGameObjects());
+        Hibernate.initialize(game.getLocations());
+        Hibernate.initialize(game.getPublishers());
         Hibernate.initialize(game.getThemes());
         model.addAttribute("game", game);
         return("details");
+    }
+
+    @Transactional
+    @GetMapping("/addToBacklog")
+    public String addToBacklog(@RequestParam Long gbId, Model model) {
+
+        User user = userRepository.findByLogin("jdoe");
+        dbService.addToBacklog(gbId, user.getId());
+        Hibernate.initialize(user.getGames());
+        // Hibernate.initialize(user.getCompletedGames());
+        model.addAttribute("user", user);
+        return "backlog";
     }
 }

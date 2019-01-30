@@ -48,11 +48,13 @@
                     <div class="card-body">
                         <img class="mx-auto d-block" style="object-fit: contain; max-height: 400px" src="${game.imageUrl}">
                     </div>
-                    <ul class="list-group list-group-flush"><b>&nbsp;&nbsp;Platforms:</b>
+                    <div class="card-body">
+                    <p><b>Platforms:</b>
                         <c:forEach items="${game.platforms}" var="plat">
-                            <li class="list-group-item">${plat.name}</li>
+                            <span class="badge badge-primary">${plat.name}</span>
                         </c:forEach>
-                    </ul>
+                    </p>
+                    </div>
                     <div class="card-body">
                         <a href="/details?gbId=${game.gbId}" class="card-link">Game details</a>
                         <a href="/addToBacklog?gbId=${game.gbId}" class="card-link text-md-right" >Add to your backlog</a>

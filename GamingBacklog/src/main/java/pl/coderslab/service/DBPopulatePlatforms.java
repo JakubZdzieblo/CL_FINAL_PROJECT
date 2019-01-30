@@ -4,8 +4,11 @@ package pl.coderslab.service;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.Platform;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.PlatformRepository;
+import pl.coderslab.repository.UserRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +18,9 @@ public class DBPopulatePlatforms {
 
     @Autowired
     PlatformRepository platformRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     static String jsonString = "[\n" +
             "{\n" +
@@ -191,6 +197,17 @@ public class DBPopulatePlatforms {
         for (Platform plat : resultList) {
             platformRepository.save(plat);
         }
+    }
+
+    public void DBCreateUser() {
+        User user = new User();
+        user.setLogin("jdoe");
+        user.setPassword("12345");
+        user.setEmail("jd@mail.com");
+        user.setComments(new ArrayList<>());
+        user.setGames(new ArrayList<>());
+        user.setName("John Doe");
+        userRepository.save(user);
     }
 
 

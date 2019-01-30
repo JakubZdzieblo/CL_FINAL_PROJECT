@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/darkly/bootstrap.min.css"
           crossorigin="anonymous">
     <title>Details</title>
+    <style>
+        card{overflow: hidden}
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,50 +44,69 @@
     <div class="row justify-content-center">
         <div class="col-xl-6">
             <div class="card">
-                <h3 class="card-header">${game.name}</h3>
+                <h3 class="card-header">${game.name}
+                    <a href="/addToBacklog?gbId=${game.gbId}">
+                    <button class="btn btn-primary float-right">Add to backlog</button></a></h3>
                 <div class="card-body">
-                    <h6 class="card-subtitle text-muted">${game.deck}</h6>
+                    <h5 class="card-subtitle">${game.deck}</h5>
+                    <br>
+                    <h6 class="card-subtitle text-muted">${game.original_release_date}</h6>
                 </div>
                 <p><img class="mx-auto d-block" style="object-fit: contain; max-height: 400px" src="${game.imageUrl}">
                 </p>
-            </div>
-        </div>
-        <div class="col-xl-3">
-            <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-header"><h4>Platforms</h4></div>
                 <div class="card-body">
-                    <ul>
-                        <c:forEach items="${game.platforms}" var="el">
-                            <li>${el.name}</li>
-                        </c:forEach>
-                    </ul>
+                    <c:forEach items="${game.platforms}" var="el">
+                        <span class="badge badge-primary">${el.name}</span>
+                    </c:forEach>
                 </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Themes</div>
                 <div class="card-body">
-                    <ul>
-                        <c:forEach items="${game.themes}" var="el">
-                            <li>${el.name}</li>
-                        </c:forEach>
-                    </ul>
+                    <c:forEach items="${game.genres}" var="el">
+                        <span class="badge badge-secondary">${el.name}</span>
+                    </c:forEach>
+                </div>
+                <div class="card-body">
+                    <c:forEach items="${game.themes}" var="el">
+                        <span class="badge badge-info">${el.name}</span>
+                    </c:forEach>
                 </div>
             </div>
         </div>
         <div class="col-xl-3">
-            <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Genres</div>
-                <div class="card-body">
+            <div class="card h-30 border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Publishers</div>
+                <div class="card-body text-truncate">
                     <ul>
-                        <c:forEach items="${game.genres}" var="el">
+                        <c:forEach items="${game.publishers}" var="el">
                             <li>${el.name}</li>
                         </c:forEach>
                     </ul>
                 </div>
             </div>
-            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+            <div class="card h-50 border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Objects</div>
+                <div class="card-body text-truncate">
+                    <ul>
+                        <c:forEach items="${game.gameObjects}" var="el">
+                            <li>${el.name}</li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="card h-30 border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Locations</div>
+                <div class="card-body text-truncate">
+                    <ul>
+                        <c:forEach items="${game.locations}" var="el">
+                            <li>${el.name}</li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
+            <div class="card h-50 border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Concepts</div>
-                <div class="card-body">
+                <div class="card-body text-truncate">
                     <ul>
                         <c:forEach items="${game.concepts}" var="el">
                             <li>${el.name}</li>
@@ -95,6 +117,13 @@
         </div>
     </div>
     <br><br>
+    <div class="row justify-content-center">
+        <div class="jumbotron col-xl-12">
+            ${game.description}
+        </div>
+
+    </div>
+    <br>
     <p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>
 </div>
 </body>

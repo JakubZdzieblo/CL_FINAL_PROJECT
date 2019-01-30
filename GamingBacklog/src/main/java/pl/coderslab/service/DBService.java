@@ -1,6 +1,5 @@
 package pl.coderslab.service;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.dto.*;
 import pl.coderslab.entity.*;
@@ -39,9 +38,20 @@ public class DBService {
     ThemeRepository themeRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     GBQuery gbQuery;
 
     public DBService() {
+    }
+
+    public void addToBacklog(Long gbId, Long userId) {
+        User user = userRepository.findOne(userId);
+        Game game = gameRepository.findByGbId(gbId);
+        if (!user.getGames().contains(game)){
+            user.getGames().add(game);
+        }
     }
 
     @Transactional
@@ -66,7 +76,8 @@ public class DBService {
 
         game.setGbId(gameDTO.getId());
         game.setName(gameDTO.getName());
-        game.setDeck(gameDTO.getDeck());
+        if (gameDTO.getDeck() != null) {
+        game.setDeck(gameDTO.getDeck().substring(0, Math.min(gameDTO.getDeck().length(), 250)));}
         game.setDescription(gameDTO.getDescription());
         game.setIconUrl(gameDTO.getImage().getIcon_url());
         game.setImageUrl(gameDTO.getImage().getMedium_url());

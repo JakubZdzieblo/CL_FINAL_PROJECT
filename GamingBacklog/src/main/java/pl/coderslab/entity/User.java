@@ -17,6 +17,7 @@ public class User {
 
     @NotEmpty
     @Size(min=3, max=20)
+    private
     String login;
 
     @Size(min=3, max=50)
@@ -25,19 +26,20 @@ public class User {
 
     @Size(min=3, max=20)
     @NotEmpty
+    private
     String password;
 
     @NotEmpty
     @Email
+    private
     String email;
 
     @ManyToMany
+    private
     List<Game> games = new ArrayList<>();
 
-    @ManyToMany
-    List<Game> completedGames = new ArrayList<>();
-
     @OneToMany
+    private
     List<Comment> comments = new ArrayList<>();
 
     public User() {
@@ -89,14 +91,6 @@ public class User {
 
     public void setGames(List<Game> games) {
         this.games = games;
-    }
-
-    public List<Game> getCompletedGames() {
-        return completedGames;
-    }
-
-    public void setCompletedGames(List<Game> completedGames) {
-        this.completedGames = completedGames;
     }
 
     public List<Comment> getComments() {
