@@ -38,26 +38,27 @@
 </nav>
 <div class="container">
     <h3>Random game of the moment:</h3>
-    <div class="col-lg-6">
+    <div class="col-lg-10">
         <div class="bs-component">
-            <div class="card mb-6">
-                <h3 class="card-header">${game.name}</h3>
-                <div class="card-body">
-                    <h5 class="card-title">${game.deck}</h5>
-                     </div>
-                <img display: block;" src="${game.imageUrl}">
-                    <p class="card-text"></p>
+                <div class="card mb-10">
+                    <h3 class="card-header">${game.name}</h3>
+                    <div class="card-body">
+                        <h5 class="card-title">${game.deck}</h5>
+                    </div>
+                    <div class="card-body">
+                        <img style="object-fit: contain; max-height: 300px" src="${game.imageUrl}">
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Platforms: ${game.platforms}</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
+        </div>
     </div>
 
 </div>
