@@ -59,45 +59,53 @@ public class DBService {
         game.setComments(new ArrayList<>());
 
         List<Concept> concepts = new ArrayList<>();
+        if (gameDTO.getConcepts() != null){
         for (GameDetailsConceptsDTO el : gameDTO.getConcepts()) { 
             concepts.add(getConceptFromDTO(el));
-        }
+        }}
         game.setConcepts(concepts);
 
         List<GameObject> objects = new ArrayList<>();
-        for (GameDetailsObjectsDTO el : gameDTO.getObjects()) {
-            objects.add(getGameObjectFromDTO(el));
+        if (gameDTO.getObjects() != null){
+            for (GameDetailsObjectsDTO el : gameDTO.getObjects()) {
+                objects.add(getGameObjectFromDTO(el));
+            }
         }
         game.setGameObjects(objects);
 
         List<Genre> genres = new ArrayList<>();
+        if (gameDTO.getGenres() != null){
         for (GameDetailsGenresDTO el : gameDTO.getGenres()) {
             genres.add(getGenreFromDTO(el));
-        }
+        }}
         game.setGenres(genres);
 
         List<Location> locations = new ArrayList<>();
+        if (gameDTO.getLocations() != null) {
         for (GameDetailsLocationsDTO el : gameDTO.getLocations()) {
             locations.add(getLocationFromDTO(el));
-        }
+        }}
         game.setLocations(locations);
 
         List<Platform> platforms = new ArrayList<>();
+        if (gameDTO.getPlatforms() != null){
         for (GameDetailsPlatformsDTO el : gameDTO.getPlatforms()) {
             platforms.add(getPlatformFromDTO(el));
-        }
+        }}
         game.setPlatforms(platforms);
 
         List<Publisher> publishers = new ArrayList<>();
+        if (gameDTO.getPublishers() != null) {
         for (GameDetailsPublishersDTO el : gameDTO.getPublishers()) {
             publishers.add(getPublisherFromDTO(el));
-        }
+        }}
         game.setPublishers(publishers);
 
         List<Theme> themes = new ArrayList<>();
+        if (gameDTO.getThemes() != null){
         for (GameDetailsThemesDTO el : gameDTO.getThemes()) {
             themes.add(getThemeFromDTO(el));
-        }
+        }}
         game.setThemes(themes);
         
         gameRepository.save(game);

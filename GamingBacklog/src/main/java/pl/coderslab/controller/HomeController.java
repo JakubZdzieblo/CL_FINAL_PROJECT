@@ -47,7 +47,7 @@ public class HomeController {
 
     @RequestMapping("")
     public String home(Model model){
-        GameDetailsDTO gameDetailsDTO = gbQuery.gameDetails(45148L);
+        GameDetailsDTO gameDetailsDTO = gbQuery.gameDetails(47459L);
         Game game = dbService.getGameFromDTO(gameDetailsDTO);
         model.addAttribute("game", game);
         return "/index";

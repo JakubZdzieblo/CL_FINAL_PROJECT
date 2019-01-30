@@ -23,11 +23,5 @@ public class AppInitializer implements WebApplicationInitializer {
 
         DBPopulatePlatforms populatePlatforms = ctx.getBean(DBPopulatePlatforms.class);
         populatePlatforms.DBPopulatePlatforms();
-
-
     }
-
-
-
-
 }

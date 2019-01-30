@@ -1,12 +1,15 @@
 package pl.coderslab.service;
 
 import org.apache.log4j.varia.NullAppender;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import pl.coderslab.dto.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
@@ -64,6 +67,12 @@ public class GBQuery {
                 "field_list=id,name,deck,resource_type,original_release_date";
 
         return getGamesSearchListElementDTOS(url);
+    }
+
+    public GameDetailsDTO randomGameDetails(){
+        Random random = new Random();
+        int gbId = random.nextInt(66586);
+        return gameDetails(Integer.toUnsignedLong(gbId));
     }
 
     public GameDetailsDTO gameDetails(Long gbId) {
