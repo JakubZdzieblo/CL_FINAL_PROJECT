@@ -1,10 +1,11 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/darkly/bootstrap.min.css" crossorigin="anonymous">
-    <title>Index</title>
+    <title>Results</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,8 +16,8 @@
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="backlog">Your backlog</a>
@@ -28,7 +29,7 @@
                 <a class="nav-link" href="filter">Games filter</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/search" method="post">
+        <form class="form-inline my-2 my-lg-0" action="search" method="post">
             <input class="form-control mr-sm-2" type="text" name="query" placeholder="Game name">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Find a game</button>
         </form>
@@ -36,31 +37,28 @@
 </nav>
 <div class="container">
     <BR><BR>
-    <h3 class="text-center">Random game of the moment:</h3>
+    <h3 class="text-center">Search results:</h3>
     <BR><BR>
-    <div class="col-lg-12">
-        <div class="bs-component">
-                <div class="card mb-12">
-                    <h3 class="card-header">${game.name}</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">${game.deck}</h5>
-                    </div>
-                    <div class="card-body">
-                        <img class="mx-auto d-block" style="object-fit: contain; max-height: 400px" src="${game.imageUrl}">
-                    </div>
-                    <ul class="list-group list-group-flush"><b>&nbsp;&nbsp;Platforms:</b>
-                        <c:forEach items="${game.platforms}" var="plat">
-                            <li class="list-group-item">${plat.name}</li>
-                        </c:forEach>
-                    </ul>
-                    <div class="card-body">
-                        <a href="/details?gbId=${game.gbId}" class="card-link">Game details</a>
-                        <a href="/addToBacklog?gbId=${game.gbId}" class="card-link text-right" >Add to your backlog</a>
-                    </div>
-                </div>
-        </div>
-    </div>
-
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Game title</th>
+            <th scope="col">Short info</th>
+            <th scope="col">Release date</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${list}" var="gameDTO">
+        <tr>
+            <th scope="row">${gameDTO.name}</th>
+            <td>${gameDTO.deck}</td>
+            <td>${fn:substring(gameDTO.original_release_date, 0, 10)}</td>
+            <td><a href="/details?gbId=${gameDTO.id}">
+                <button type="button" class="btn btn-secondary">Details</button></a>
+            </td>
+        </tr>
+        </c:forEach>
 </div>
 </body>
 </html>

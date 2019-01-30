@@ -5,6 +5,7 @@ import pl.coderslab.dto.*;
 import pl.coderslab.entity.*;
 import pl.coderslab.repository.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class DBService {
         game.setIconUrl(gameDTO.getImage().getIcon_url());
         game.setImageUrl(gameDTO.getImage().getOriginal_url());
         game.setComments(new ArrayList<>());
+        game.setOriginal_release_date(LocalDate.parse(gameDTO.getOriginal_release_date().substring(0,10)));
 
         List<Concept> concepts = new ArrayList<>();
         if (gameDTO.getConcepts() != null){

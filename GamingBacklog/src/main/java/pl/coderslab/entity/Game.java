@@ -1,11 +1,9 @@
 package pl.coderslab.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import pl.coderslab.dto.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class Game {
     @Lob
     private String description;
 
-    private LocalDateTime original_release_date;
+    private LocalDate original_release_date;
 
     private String iconUrl;
 
@@ -95,11 +93,11 @@ public class Game {
         this.description = description;
     }
 
-    public LocalDateTime getOriginal_release_date() {
+    public LocalDate getOriginal_release_date() {
         return original_release_date;
     }
 
-    public void setOriginal_release_date(LocalDateTime original_release_date) {
+    public void setOriginal_release_date(LocalDate original_release_date) {
         this.original_release_date = original_release_date;
     }
 
