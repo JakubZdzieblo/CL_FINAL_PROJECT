@@ -56,7 +56,7 @@ public class DBService {
         game.setDeck(gameDTO.getDeck());
         game.setDescription(gameDTO.getDescription());
         game.setIconUrl(gameDTO.getImage().getIcon_url());
-        game.setImageUrl(gameDTO.getImage().getOriginal_url());
+        game.setImageUrl(gameDTO.getImage().getMedium_url());
         game.setComments(new ArrayList<>());
         game.setOriginal_release_date(LocalDate.parse(gameDTO.getOriginal_release_date().substring(0,10)));
 

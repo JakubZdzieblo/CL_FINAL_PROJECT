@@ -4,7 +4,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/darkly/bootstrap.min.css" crossorigin="anonymous">
-    <title>Index</title>
+    <title>Filter</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,8 +15,8 @@
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="backlog">Your backlog</a>
@@ -24,7 +24,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="otherBacklogs">Others backlogs</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="filter">Games filter</a>
             </li>
         </ul>
@@ -35,34 +35,35 @@
     </div>
 </nav>
 <div class="container">
-    <BR><BR>
-    <h3 class="text-center">Random game of the moment:</h3>
-    <BR><BR>
     <div class="col-lg-12">
-        <div class="bs-component">
-                <div class="card mb-12">
-                    <h3 class="card-header">${game.name}</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">${game.deck}</h5>
-                    </div>
-                    <div class="card-body">
-                        <img class="mx-auto d-block" style="object-fit: contain; max-height: 400px" src="${game.imageUrl}">
-                    </div>
-                    <ul class="list-group list-group-flush"><b>&nbsp;&nbsp;Platforms:</b>
-                        <c:forEach items="${game.platforms}" var="plat">
-                            <li class="list-group-item">${plat.name}</li>
-                        </c:forEach>
-                    </ul>
-                    <div class="card-body">
-                        <a href="/details?gbId=${game.gbId}" class="card-link">Game details</a>
-                        <a href="/addToBacklog?gbId=${game.gbId}" class="card-link text-md-right" >Add to your backlog</a>
-                    </div>
-                </div>
+    <BR><BR>
+    <h3 class="text-center">Select filtering conditions:</h3>
+    <BR><BR>
+
+    <form method="post" action="filter">
+        <div class="row justify-content-center">
+        <div class="form-group col-lg-6">
+            <select class="custom-select" name="platform">
+                <option selected="">Select platform</option>
+                <c:forEach items="${platforms}" var="platform">
+                <option value="${platform.gbId}">${platform.abbreviation} - ${platform.name}</option>
+                </c:forEach>
+            </select>
+        </div></div>
+        <div class="row justify-content-center">
+        <div class="form-group">
+            <label class="col-form-label" for="dateFrom">Release date between:</label>
+            <input type="date" class="form-control col-lg-10" placeholder="Default input" id="dateFrom" name="dateFrom">
         </div>
+            <div class="form-group">
+            <label class="col-form-label" for="dateTo">and:</label>
+            <input type="date" class="form-control col-lg-10" placeholder="Default input" id="dateTo" name="dateTo">
+        </div>
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">SUBMIT</button></div>
+    </form>
     </div>
 </div>
-<br><br>
-<p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>
-
 </body>
 </html>
