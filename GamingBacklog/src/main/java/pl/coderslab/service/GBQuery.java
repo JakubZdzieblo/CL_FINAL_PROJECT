@@ -11,12 +11,11 @@ import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.codehaus.jackson.map.ObjectMapper;
-import pl.coderslab.entity.Game;
 
 
 public class GBQuery {
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
 //        LocalDate date1 = LocalDate.of(1980,10,10);
 //        LocalDate date2 = LocalDate.of(1990,12,01);
 //
@@ -42,7 +41,7 @@ public class GBQuery {
 
     }
 
-    public static List<GamesSearchListElementDTO> gameFilterResult(int platform_id, LocalDate releaseDateAfter, LocalDate releaseDateBefore, int limit) {
+    public List<GamesSearchListElementDTO> gameFilterResult(int platform_id, LocalDate releaseDateAfter, LocalDate releaseDateBefore, int limit) {
 
         String url = "https://www.giantbomb.com/api/games/?api_key=a27aa22010c29559d6fec67de238b8d50337ff34&" +
                 "format=json&" +
@@ -54,7 +53,7 @@ public class GBQuery {
         return getGamesSearchListElementDTOS(url);
     }
 
-    public static List<GamesSearchListElementDTO> gameSearchResult(String query, int limit) {
+    public List<GamesSearchListElementDTO> gameSearchResult(String query, int limit) {
 
         String url = "https://www.giantbomb.com/api/search/?api_key=a27aa22010c29559d6fec67de238b8d50337ff34&" +
                 "format=json&query="+query+"&" +
@@ -64,7 +63,7 @@ public class GBQuery {
         return getGamesSearchListElementDTOS(url);
     }
 
-    public static GameDetailsDTO gameDetails(Long gbId) {
+    public GameDetailsDTO gameDetails(Long gbId) {
 
         String url = "https://www.giantbomb.com/api/game/3030-"+gbId+"/?api_key=a27aa22010c29559d6fec67de238b8d50337ff34&" +
                 "format=json&" +
@@ -118,7 +117,7 @@ public class GBQuery {
 
     }
 
-    private static List<GamesSearchListElementDTO> getGamesSearchListElementDTOS(String url) {
+    private List<GamesSearchListElementDTO> getGamesSearchListElementDTOS(String url) {
         List<GamesSearchListElementDTO> resultList = new ArrayList<>();
 
         // to remove log4j warnings
