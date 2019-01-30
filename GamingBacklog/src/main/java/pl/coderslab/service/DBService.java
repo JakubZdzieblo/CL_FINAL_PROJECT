@@ -34,13 +34,20 @@ public class DBService {
     @Autowired
     ThemeRepository themeRepository;
 
-    public Game getGameFromDTO(GameDetailsDTO gameDTO) {
+    @Autowired
+    GBQuery gbQuery;
 
+    public DBService() {
+    }
+
+    public Game getGameFromDTO(GameDetailsDTO gameDTO) {
 
         Game game = gameRepository.findByGbId(gameDTO.getId());
 
         if (game != null){
             return game;
+        } else {
+            game = new Game();
         }
 
         game.setGbId(gameDTO.getId());
@@ -103,6 +110,8 @@ public class DBService {
         Concept concept = conceptRepository.findByGbId(conceptDTO.getId());
         if (concept!=null){
             return concept;
+        } else {
+            concept = new Concept();
         }
         concept.setGbId(conceptDTO.getId());
         concept.setName(conceptDTO.getName());
@@ -120,6 +129,8 @@ public class DBService {
         GameObject gameObject = gameObjectRepository.findByGbId(gameObjectDTO.getId());
         if (gameObject!=null){
             return gameObject;
+        } else {
+            gameObject = new GameObject();
         }
         gameObject.setGbId(gameObjectDTO.getId());
         gameObject.setName(gameObjectDTO.getName());
@@ -136,6 +147,8 @@ public class DBService {
         Genre genre = genreRepository.findByGbId(genreDTO.getId());
         if (genre!=null){
             return genre;
+        } else {
+            genre = new Genre();
         }
         genre.setGbId(genreDTO.getId());
         genre.setName(genreDTO.getName());
@@ -153,6 +166,8 @@ public class DBService {
         Location location = locationRepository.findByGbId(locationDTO.getId());
         if (location!=null){
             return location;
+        } else {
+            location = new Location();
         }
         location.setGbId(locationDTO.getId());
         location.setName(locationDTO.getName());
@@ -170,6 +185,8 @@ public class DBService {
         Platform platform = platformRepository.findByGbId(platformDTO.getId());
         if (platform != null) {
             return platform;
+        } else {
+            platform = new Platform();
         }
         platform.setGbId(platformDTO.getId());
         platform.setName(platformDTO.getName());
@@ -186,6 +203,8 @@ public class DBService {
         Publisher publisher = publisherRepository.findByGbId(publisherDTO.getId());
         if (publisher != null) {
             return publisher;
+        } else {
+            publisher = new Publisher();
         }
         publisher.setGbId(publisherDTO.getId());
         publisher.setName(publisherDTO.getName());
@@ -202,6 +221,8 @@ public class DBService {
         Theme theme = themeRepository.findByGbId(themeDTO.getId());
         if (theme != null) {
             return theme;
+        } else {
+            theme = new Theme();
         }
         theme.setGbId(themeDTO.getId());
         theme.setName(themeDTO.getName());

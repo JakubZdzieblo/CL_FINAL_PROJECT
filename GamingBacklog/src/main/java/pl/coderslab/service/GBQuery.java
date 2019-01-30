@@ -15,6 +15,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class GBQuery {
 
+    public GBQuery() {
+    }
+
     public void main(String[] args) {
 //        LocalDate date1 = LocalDate.of(1980,10,10);
 //        LocalDate date2 = LocalDate.of(1990,12,01);

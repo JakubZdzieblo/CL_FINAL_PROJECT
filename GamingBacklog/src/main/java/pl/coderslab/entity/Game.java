@@ -23,7 +23,7 @@ public class Game {
     private String name;
 
     private String deck;
-
+    @Lob
     private String description;
 
     private LocalDateTime original_release_date;
