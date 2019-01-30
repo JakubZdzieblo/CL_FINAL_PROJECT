@@ -58,7 +58,8 @@ public class DBService {
         game.setIconUrl(gameDTO.getImage().getIcon_url());
         game.setImageUrl(gameDTO.getImage().getMedium_url());
         game.setComments(new ArrayList<>());
-        game.setOriginal_release_date(LocalDate.parse(gameDTO.getOriginal_release_date().substring(0,10)));
+        if (gameDTO.getOriginal_release_date() != null){
+        game.setOriginal_release_date(LocalDate.parse(gameDTO.getOriginal_release_date().substring(0,10)));}
 
         List<Concept> concepts = new ArrayList<>();
         if (gameDTO.getConcepts() != null){
