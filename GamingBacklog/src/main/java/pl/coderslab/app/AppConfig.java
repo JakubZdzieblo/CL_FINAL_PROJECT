@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import pl.coderslab.service.DBPopulatePlatforms;
 import pl.coderslab.service.DBService;
 import pl.coderslab.service.GBQuery;
 
@@ -68,4 +69,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     public GBQuery gbQuery() {return new GBQuery();}
+
+    @Bean
+    public DBPopulatePlatforms populatePlatforms() {return new DBPopulatePlatforms();}
 }

@@ -2,6 +2,7 @@ package pl.coderslab.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dto.GameDetailsDTO;
@@ -45,18 +46,10 @@ public class HomeController {
     DBService dbService;
 
     @RequestMapping("")
-    @ResponseBody
-    public String home(){
+    public String home(Model model){
         GameDetailsDTO gameDetailsDTO = gbQuery.gameDetails(45148L);
         Game game = dbService.getGameFromDTO(gameDetailsDTO);
-
-        System.out.println(game.getId());
-        System.out.println(game.getGbId());
-        System.out.println(game.getName());
-
-        for (Concept concept : game.getConcepts()) {
-            System.out.println(concept.getName());
-        }
-        return game.getDescription();
+        model.addAttribute("game", game);
+        return "/index";
     }
 }

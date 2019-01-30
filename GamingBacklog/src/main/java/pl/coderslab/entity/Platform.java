@@ -85,6 +85,6 @@ public class Platform {
 
     @Override
     public String toString() {
-        return abbreviation;
+        return abbreviation ;
     }
 }
