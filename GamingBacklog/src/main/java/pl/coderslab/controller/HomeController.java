@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.dto.GameDetailsDTO;
 import pl.coderslab.dto.GamesSearchListElementDTO;
 import pl.coderslab.entity.Game;
 import pl.coderslab.entity.Platform;
@@ -89,7 +88,24 @@ public class HomeController {
         User user = userRepository.findByLogin("jdoe");
         dbService.addToBacklog(gbId, user.getId());
         Hibernate.initialize(user.getGames());
-        // Hibernate.initialize(user.getCompletedGames());
+        model.addAttribute("user", user);
+        return "backlog";
+    }
+
+    @Transactional
+    @GetMapping("/removeFromBacklog")
+    public String removeFromBacklog(@RequestParam Long gbId, Model model){
+        User user = userRepository.findByLogin("jdoe");
+        dbService.removeFromBacklog(gbId, user.getId());
+        Hibernate.initialize(user.getGames());
+        model.addAttribute("user", user);
+        return "redirect:backlog";
+    }
+    @Transactional
+    @GetMapping("/backlog")
+    public String backlog(Model model){
+        User user = userRepository.findByLogin("jdoe");
+        Hibernate.initialize(user.getGames());
         model.addAttribute("user", user);
         return "backlog";
     }

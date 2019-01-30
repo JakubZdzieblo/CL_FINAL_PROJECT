@@ -9,7 +9,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><h3>GAMING BACKLOG</h3></a>
+    <a class="navbar-brand" href="/"><h3>GAMING BACKLOG</h3></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,7 +20,7 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-item" href="backlog">Your backlog</a>
+                <a class="nav-link" href="backlog">Your backlog</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="otherBacklogs">Others backlogs</a>
@@ -46,6 +46,7 @@
             <th scope="col">Game title</th>
             <th scope="col">Short info</th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -56,8 +57,12 @@
             <td><a href="details?gbId=${game.gbId}">
                 <button type="button" class="btn btn-secondary">Details</button></a>
             </td>
+            <td><a href="removeFromBacklog?gbId=${game.gbId}">
+                <button type="button" class="btn btn-warning">Remove</button></a>
+            </td>
         </tr>
         </c:forEach>
+        </tbody></table>
 </div>
 <br><br>
 <p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>

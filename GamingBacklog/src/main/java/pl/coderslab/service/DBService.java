@@ -48,9 +48,17 @@ public class DBService {
 
     public void addToBacklog(Long gbId, Long userId) {
         User user = userRepository.findOne(userId);
-        Game game = gameRepository.findByGbId(gbId);
+        Game game = getGame(gbId);
         if (!user.getGames().contains(game)){
             user.getGames().add(game);
+        }
+    }
+
+    public void removeFromBacklog(Long gbId, Long userId){
+        User user = userRepository.findOne(userId);
+        Game game = gameRepository.findByGbId(gbId);
+        if (!user.getGames().contains(game)){
+            user.getGames().remove(game);
         }
     }
 
@@ -79,8 +87,9 @@ public class DBService {
         if (gameDTO.getDeck() != null) {
         game.setDeck(gameDTO.getDeck().substring(0, Math.min(gameDTO.getDeck().length(), 250)));}
         game.setDescription(gameDTO.getDescription());
+        if (gameDTO.getImage() != null) {
         game.setIconUrl(gameDTO.getImage().getIcon_url());
-        game.setImageUrl(gameDTO.getImage().getMedium_url());
+        game.setImageUrl(gameDTO.getImage().getMedium_url());}
         game.setComments(new ArrayList<>());
         if (gameDTO.getOriginal_release_date() != null){
         game.setOriginal_release_date(LocalDate.parse(gameDTO.getOriginal_release_date().substring(0,10)));}

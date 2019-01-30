@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><h3>GAMING BACKLOG</h3></a>
+    <a class="navbar-brand" href="/"><h3>GAMING BACKLOG</h3></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -41,7 +41,9 @@
     <div class="col-lg-12">
         <div class="bs-component">
                 <div class="card mb-12">
-                    <h3 class="card-header">${game.name}</h3>
+                    <h3 class="card-header">${game.name}
+                        <a href="/addToBacklog?gbId=${game.gbId}">
+                            <button class="btn btn-primary float-right">Add to backlog</button></a></h3>
                     <div class="card-body">
                         <h5 class="card-title">${game.deck}</h5>
                     </div>
@@ -57,7 +59,6 @@
                     </div>
                     <div class="card-body">
                         <a href="/details?gbId=${game.gbId}" class="card-link">Game details</a>
-                        <a href="/addToBacklog?gbId=${game.gbId}" class="card-link text-md-right" >Add to your backlog</a>
                     </div>
                 </div>
         </div>
