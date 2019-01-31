@@ -12,19 +12,20 @@
     <a class="navbar-brand" href=""><h3>GAMING BACKLOG</h3></a>
 </nav>
 <div class="container">
-    <BR><BR>
-    <h3 class="text-center">LOGIN PLEASE</h3>
-    <BR><BR>
+    <div class="row justify-content-md-center">
+    <div class=col-lg-auto">
+    <h4 class="text-center">LOGIN PLEASE</h4>
     <form:form method="post" action="/login/check" modelAttribute="user">
-        <form:input path="login" placeholder="Login"/>
-        <form:errors path="login" cssStyle="color: darkred"/><BR><BR>
-        <form:password path="password" placeholder="Password"/>
-        <form:errors path="password" cssStyle="color: darkred"/><BR><BR>
+        <form:input path="login" placeholder="Login"/><br>
+        <form:errors path="login" cssStyle="color: lightcoral"/><BR>
+        <form:password path="password" placeholder="Password"/><br>
+        <form:errors path="password" cssStyle="color: lightcoral"/><BR>
         <form:button>LOGIN</form:button>
     </form:form>
-</div>
-<h3><a href="/login/register">REGISTER NEW USER</a></h3>
-<br><br>
+
+<h4><a href="/login/register" class="text-center">REGISTER NEW USER</a></h4>
+    <br><br>
+    </div></div></div>
 <p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>
 
 </body>

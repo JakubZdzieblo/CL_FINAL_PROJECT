@@ -14,6 +14,7 @@ import pl.coderslab.repository.*;
 import pl.coderslab.service.DBService;
 import pl.coderslab.service.GBQuery;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
@@ -90,9 +91,10 @@ public class HomeController {
 
     @Transactional
     @GetMapping("/addToBacklog")
-    public String addToBacklog(@RequestParam Long gbId, Model model) {
+    public String addToBacklog(@RequestParam Long gbId, Model model, HttpSession session) {
 
-        User user = userRepository.findByLogin("jdoe");
+        User user = (User) session.getAttribute("user");
+        user = userRepository.findByLogin(user.getLogin());
         dbService.addToBacklog(gbId, user.getId());
         Hibernate.initialize(user.getGames());
         model.addAttribute("user", user);
@@ -101,17 +103,19 @@ public class HomeController {
 
     @Transactional
     @GetMapping("/removeFromBacklog")
-    public String removeFromBacklog(@RequestParam Long gbId, Model model){
-        User user = userRepository.findByLogin("jdoe");
+    public String removeFromBacklog(@RequestParam Long gbId, Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
         dbService.removeFromBacklog(gbId, user.getId());
+        user = userRepository.findByLogin(user.getLogin());
         Hibernate.initialize(user.getGames());
         model.addAttribute("user", user);
         return "redirect:backlog";
     }
     @Transactional
     @GetMapping("/backlog")
-    public String backlog(Model model){
-        User user = userRepository.findByLogin("jdoe");
+    public String backlog(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        user = userRepository.findByLogin(user.getLogin());
         Hibernate.initialize(user.getGames());
         model.addAttribute("user", user);
         return "backlog";

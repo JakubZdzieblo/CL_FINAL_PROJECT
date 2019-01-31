@@ -33,6 +33,10 @@
                 <a class="nav-link" href="filter">Games filter</a>
             </li>
         </ul>
+        <div class="navbar-nav mr-auto">
+            <div class="navbar-item">Logged in as <b>${sessionScope.user}</b></div></div>
+        <div class="navbar-nav mr-auto">
+            <a href="login" class="navbar-item">Logout</a></div>
         <form class="form-inline my-2 my-lg-0" action="/search" method="post">
             <input class="form-control mr-sm-2" type="text" name="query" placeholder="Game name">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Find a game</button>

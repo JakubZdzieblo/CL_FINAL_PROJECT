@@ -1,5 +1,6 @@
 package pl.coderslab.service;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.dto.*;
 import pl.coderslab.entity.*;
@@ -45,7 +46,7 @@ public class DBService {
 
     public DBService() {
     }
-
+    @Transactional
     public void addToBacklog(Long gbId, Long userId) {
         User user = userRepository.findOne(userId);
         Game game = getGame(gbId);
@@ -53,11 +54,12 @@ public class DBService {
             user.getGames().add(game);
         }
     }
-
+    @Transactional
     public void removeFromBacklog(Long gbId, Long userId){
         User user = userRepository.findOne(userId);
         Game game = gameRepository.findByGbId(gbId);
-        if (!user.getGames().contains(game)){
+        List<Game> listOfGames = gameRepository.findAllByUsers(user);
+        if (!listOfGames.contains(game)){
             user.getGames().remove(game);
         }
     }
