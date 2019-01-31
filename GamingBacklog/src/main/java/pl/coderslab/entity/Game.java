@@ -47,7 +47,7 @@ public class Game {
     private List<Theme> themes = new ArrayList<>();
     @ManyToMany
     private List<User> users = new ArrayList<>();
-    @OneToMany
+    @OneToMany(mappedBy = "game")
     private List<Comment> comments = new ArrayList<>();
 
     public Game() {

@@ -84,8 +84,13 @@ public class DBService {
 
         GameDetailsDTO gameDTO = gbQuery.gameDetails(gbId);
 
-        game.setGbId(gameDTO.getId());
-        game.setName(gameDTO.getName());
+        if (gameDTO.getId() != null){game.setGbId(gameDTO.getId());} else {
+            game.setGbId(0L);
+        }
+        if (gameDTO.getName() != null){
+        game.setName(gameDTO.getName());} else {
+            game.setName("No result");
+        }
         if (gameDTO.getDeck() != null) {
         game.setDeck(gameDTO.getDeck().substring(0, Math.min(gameDTO.getDeck().length(), 250)));}
         game.setDescription(gameDTO.getDescription());

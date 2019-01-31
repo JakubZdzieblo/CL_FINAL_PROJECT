@@ -142,15 +142,14 @@
     <div class="row justify-content-center" id="comments">
         <div class="col-xl-12">
             <div class="card border-secondary mb-12">
-                <div class="card-header"><h5>Comments<a href="addComment?gbId=${game.gbId}">
+                <div class="card-header"><h5>Comments<a href="comments/addComment?gbId=${game.gbId}">
                     <button class="btn btn-primary float-right">Add Comment</button></a></h5></div>
                     <c:forEach items="${comments}" var="el">
                         <div class="card-body">
-                            <p class="text-muted">by ${el.user} on ${el.created}</p>
-                            <p>${el.text}</p>
-                        </div>
-                        <li>${el.name}</li>
-                    </c:forEach>
+                            <p class="text-muted"><i>by <b>${el.user}</b> on ${el.created}</i></p>
+                            ${el.text}
+                          </div>
+                     </c:forEach>
 
             </div>
         </div>

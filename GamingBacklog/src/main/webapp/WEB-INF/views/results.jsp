@@ -67,7 +67,7 @@
                     <button class="btn btn-primary float-right">Save</button></a>
             </td>
         </tr>
-        </c:forEach>
+        </c:forEach></tbody></table>
 </div>
 <br><br>
 <p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>

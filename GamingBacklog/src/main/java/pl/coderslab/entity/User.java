@@ -41,7 +41,7 @@ public class User {
     private
     List<Game> games = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private
     List<Comment> comments = new ArrayList<>();
 
