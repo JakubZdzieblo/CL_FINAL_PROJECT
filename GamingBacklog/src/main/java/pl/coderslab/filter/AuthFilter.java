@@ -20,7 +20,7 @@ public class AuthFilter implements Filter {
 
         String url = request.getRequestURI();
 
-        if(!(url.equals("/login") || url.equals("/") || url.equals("/login/register"))){
+        if(!(url.equals("/login") || url.equals("/login/register") || url.equals("/login/check") || url.equals("/login/save"))){
             if(session.getAttribute("user") == null){
                 response.sendRedirect(request.getContextPath()+"/login");
                 return;

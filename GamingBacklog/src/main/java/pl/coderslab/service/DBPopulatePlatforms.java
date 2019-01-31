@@ -3,6 +3,7 @@ package pl.coderslab.service;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.Platform;
@@ -202,7 +203,7 @@ public class DBPopulatePlatforms {
     public void DBCreateUser() {
         User user = new User();
         user.setLogin("jdoe");
-        user.setPassword("12345");
+        user.setPassword(BCrypt.hashpw("12345", BCrypt.gensalt()));
         user.setEmail("jd@mail.com");
         user.setComments(new ArrayList<>());
         user.setGames(new ArrayList<>());

@@ -40,7 +40,7 @@ public class HomeController {
     DBService dbService;
 
 
-    @RequestMapping({"", "/index"})
+    @RequestMapping({"/index"})
     public String index(Model model){
         Game game = dbService.randomGame();
         model.addAttribute("game", game);

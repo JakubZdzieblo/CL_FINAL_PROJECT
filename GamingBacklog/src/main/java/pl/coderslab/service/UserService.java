@@ -19,9 +19,8 @@ public class UserService {
         if(user.getPassword().equals(repeatedPassword)){
             user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             userRepository.save(user);
-            return;
-        }
-        throw new Exception("Password doesn't match");
+        } else {
+        throw new Exception("Password doesn't match");}
     }
 
     public boolean loginUser(String login, String password, HttpSession session) {

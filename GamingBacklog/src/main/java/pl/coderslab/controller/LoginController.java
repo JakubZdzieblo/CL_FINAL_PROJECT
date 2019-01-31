@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
 import pl.coderslab.service.UserService;
+import pl.coderslab.validator.groups.FullUserValidationGroup;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -31,7 +34,7 @@ public class LoginController {
         return "login/login";
     }
 
-    @GetMapping("register")
+    @GetMapping("/register")
     public String register(Model model){
         model.addAttribute("user", new User());
         return "login/register";
@@ -42,15 +45,14 @@ public class LoginController {
         if (errors.hasErrors()) {
             return "login/login";
         }
-
         if (userService.loginUser(user.getLogin(), user.getPassword(), session)){
-            return "redirect:"+request.getContextPath()+"/";
+            return "redirect:"+request.getContextPath()+"/index";
         }
         return "login/login";
     }
 
     @PostMapping("/save")
-    private String save(@Valid User user,
+    private String save(@Validated(FullUserValidationGroup.class) User user,
                         BindingResult errors,
                         @RequestParam String repeatedPassword,
                         HttpServletRequest request,

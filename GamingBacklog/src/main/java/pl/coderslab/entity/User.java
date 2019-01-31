@@ -2,9 +2,11 @@ package pl.coderslab.entity;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.validator.groups.FullUserValidationGroup;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,21 +18,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @NotEmpty
-    @Size(min=3, max=20)
+    @NotEmpty(groups = {Default.class, FullUserValidationGroup.class})
+    @Size(min=3, max=100)
     private
     String login;
 
-    @Size(min=3, max=50)
-    @NotEmpty
+    @Size(min=3, max=100)
+    @NotEmpty(groups = FullUserValidationGroup.class)
     String name;
 
-    @Size(min=3, max=20)
-    @NotEmpty
+    @Size(min=3, max=100)
+    @NotEmpty(groups = {Default.class, FullUserValidationGroup.class})
     private
     String password;
 
-    @NotEmpty
+    @NotEmpty(groups = FullUserValidationGroup.class)
     @Email
     private
     String email;
