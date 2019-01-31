@@ -82,7 +82,14 @@ public class GBQuery {
             String jsonInString = new String(responseBody);
             GameResultDTO result = mapper.readValue(jsonInString, GameResultDTO.class);
 
-            gameDTO = result.getResults();
+            if (result.getResults() != null
+                    && result.getResults().getId() != null
+                    && result.getResults().getName() != null){
+            gameDTO = result.getResults();} else {
+                gameDTO = new GameDetailsDTO();
+                gameDTO.setId(0L);
+                gameDTO.setName("No data");
+            }
 
         } catch (HttpException e) {
             System.err.println("Fatal protocol violation: " + e.getMessage());

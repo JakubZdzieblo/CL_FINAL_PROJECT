@@ -41,7 +41,7 @@ public class HomeController {
     DBService dbService;
 
 
-    @RequestMapping({"/index"})
+    @RequestMapping({"","/index"})
     public String index(Model model){
         Game game = dbService.randomGame();
         model.addAttribute("game", game);
@@ -119,5 +119,22 @@ public class HomeController {
         Hibernate.initialize(user.getGames());
         model.addAttribute("user", user);
         return "backlog";
+    }
+
+    @GetMapping("/otherBacklogs")
+    public String users(Model model){
+        List<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+        return "users";
+    }
+
+    @Transactional
+    @GetMapping("/otherBacklog")
+    public String otherBacklog(@RequestParam Long id, Model model) {
+        User user = userRepository.findOne(id);
+        user = userRepository.findByLogin(user.getLogin());
+        Hibernate.initialize(user.getGames());
+        model.addAttribute("user", user);
+        return "otherBacklog";
     }
 }

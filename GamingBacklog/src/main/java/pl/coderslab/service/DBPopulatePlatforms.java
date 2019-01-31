@@ -209,6 +209,15 @@ public class DBPopulatePlatforms {
         user.setGames(new ArrayList<>());
         user.setName("John Doe");
         userRepository.save(user);
+
+        User user2 = new User();
+        user2.setLogin("kub");
+        user2.setPassword(BCrypt.hashpw("12345", BCrypt.gensalt()));
+        user2.setEmail("k@mail.com");
+        user2.setComments(new ArrayList<>());
+        user2.setGames(new ArrayList<>());
+        user2.setName("Kub Bub");
+        userRepository.save(user2);
     }
 
 

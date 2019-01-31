@@ -25,7 +25,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="otherBacklogs">Others backlogs</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="filter">Games filter</a>
             </li>
         </ul>
