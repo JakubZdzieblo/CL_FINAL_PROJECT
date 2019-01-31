@@ -41,9 +41,10 @@ public class CommentsController {
 
     @PostMapping("save")
     public String save(@Valid Comment comment, BindingResult errors,
-                       @RequestParam Long gbId, HttpSession session){
+                       @RequestParam Long gbId, HttpSession session, Model model){
         if (errors.hasErrors()) {
-            return "commentForm";
+            model.addAttribute("gbId", gbId);
+            return "/commentForm";
         }
         Game game = gameRepository.findByGbId(gbId);
         User user = (User) session.getAttribute("user");
