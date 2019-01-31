@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dto.GamesSearchListElementDTO;
+import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.Game;
 import pl.coderslab.entity.Platform;
 import pl.coderslab.entity.User;
@@ -30,13 +31,17 @@ public class HomeController {
     UserRepository userRepository;
 
     @Autowired
+    CommentRepository commentRepository;
+
+    @Autowired
     GBQuery gbQuery;
 
     @Autowired
     DBService dbService;
 
-    @RequestMapping("")
-    public String home(Model model){
+
+    @RequestMapping({"", "/index"})
+    public String index(Model model){
         Game game = dbService.randomGame();
         model.addAttribute("game", game);
         return "/index";
@@ -70,6 +75,7 @@ public class HomeController {
     @GetMapping("/details")
     public String details(Model model, @RequestParam Long gbId){
         Game game = dbService.getGame(gbId);
+        Comment comment = null; //commentRepository.findFirstByGameGbId(gbId);
         Hibernate.initialize(game.getPlatforms());
         Hibernate.initialize(game.getConcepts());
         Hibernate.initialize(game.getGenres());
@@ -77,6 +83,7 @@ public class HomeController {
         Hibernate.initialize(game.getLocations());
         Hibernate.initialize(game.getPublishers());
         Hibernate.initialize(game.getThemes());
+        model.addAttribute("comment", comment);
         model.addAttribute("game", game);
         return("details");
     }

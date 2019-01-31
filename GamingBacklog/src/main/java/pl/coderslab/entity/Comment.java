@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,6 +16,7 @@ public class Comment {
     private Long id;
 
     @NotEmpty
+    @Size(min=3, max=250)
     private String text;
 
     @CreationTimestamp

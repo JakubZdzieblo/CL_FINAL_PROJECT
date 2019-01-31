@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.service.DBPopulatePlatforms;
 import pl.coderslab.service.DBService;
 import pl.coderslab.service.GBQuery;
+import pl.coderslab.service.UserService;
 
 import javax.persistence.EntityManagerFactory;
 import javax.validation.Validator;
@@ -69,6 +70,9 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     public GBQuery gbQuery() {return new GBQuery();}
+
+    @Bean
+    public UserService userService() {return new UserService();}
 
     @Bean
     public DBPopulatePlatforms populatePlatforms() {return new DBPopulatePlatforms();}

@@ -12,7 +12,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/"><h3>GAMING BACKLOG</h3></a>
+    <a class="navbar-brand" href="index"><h3>GAMING BACKLOG</h3></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
             aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="index">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="backlog">Your backlog</a>
@@ -69,9 +69,13 @@
                         <span class="badge badge-info">${el.name}</span>
                     </c:forEach>
                 </div>
+                <div class="card-body">
+                <p><a href="#comments"><button class="btn btn-secondary float-right">Jump to comments
+                </button></a></p></div>
             </div>
         </div>
         <div class="col-xl-3">
+            <c:if test="${not empty game.publishers}">
             <div class="card h-30 border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Publishers</div>
                 <div class="card-body text-truncate">
@@ -82,6 +86,8 @@
                     </ul>
                 </div>
             </div>
+            </c:if>
+            <c:if test="${not empty game.gameObjects}">
             <div class="card h-50 border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Objects</div>
                 <div class="card-body text-truncate">
@@ -92,8 +98,10 @@
                     </ul>
                 </div>
             </div>
+            </c:if>
         </div>
         <div class="col-xl-3">
+        <c:if test="${not empty game.locations}">
             <div class="card h-30 border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Locations</div>
                 <div class="card-body text-truncate">
@@ -104,6 +112,8 @@
                     </ul>
                 </div>
             </div>
+        </c:if>
+        <c:if test="${not empty game.concepts}">
             <div class="card h-50 border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Concepts</div>
                 <div class="card-body text-truncate">
@@ -114,14 +124,32 @@
                     </ul>
                 </div>
             </div>
+        </c:if>
         </div>
     </div>
     <br><br>
+    <c:if test="${not empty game.description}">
     <div class="row justify-content-center">
-        <div class="jumbotron col-xl-12">
+        <div class="jumbotron col-xl-12 text-justify">
             ${game.description}
         </div>
+    </div>
+    </c:if>
+    <div class="row justify-content-center" id="comments">
+        <div class="col-xl-12">
+            <div class="card border-secondary mb-12">
+                <div class="card-header"><h5>Comments<a href="addComment?gbId=${game.gbId}">
+                    <button class="btn btn-primary float-right">Add Comment</button></a></h5></div>
+                    <c:forEach items="${comments}" var="el">
+                        <div class="card-body">
+                            <p class="text-muted">by ${el.user} on ${el.created}</p>
+                            <p>${el.text}</p>
+                        </div>
+                        <li>${el.name}</li>
+                    </c:forEach>
 
+            </div>
+        </div>
     </div>
     <br>
     <p class="text-secondary text-center">All data from <a href="http://www.giantbomb.com">GiantBomb</a>.</p>
