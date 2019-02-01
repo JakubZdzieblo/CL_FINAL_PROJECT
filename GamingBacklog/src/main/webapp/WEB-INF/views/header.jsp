@@ -9,10 +9,10 @@
             <c:when test="${path eq '/index'}">
                 <c:set var="a1" value="active"/>
             </c:when>
-            <c:when test="${path eq '/backlog'}">
+            <c:when test="${(path eq '/backlog') or (path eq '/addToBacklog')}">
                 <c:set var="a2" value="active"/>
             </c:when>
-            <c:when test="${path eq '/otherBacklogs'}">
+            <c:when test="${(path eq '/otherBacklogs') or (path eq '/otherBacklog')}">
                 <c:set var="a3" value="active"/>
             </c:when>
             <c:when test="${path eq '/filter'}">
