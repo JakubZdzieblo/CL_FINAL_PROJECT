@@ -1,5 +1,6 @@
 package pl.coderslab.service;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.dto.*;
 import pl.coderslab.entity.*;
@@ -48,6 +49,18 @@ public class DBService {
 
     public DBService() {
     }
+
+    public void InitializeSublists(Game game) {
+        Hibernate.initialize(game.getPlatforms());
+        Hibernate.initialize(game.getConcepts());
+        Hibernate.initialize(game.getGenres());
+        Hibernate.initialize(game.getGameObjects());
+        Hibernate.initialize(game.getLocations());
+        Hibernate.initialize(game.getPublishers());
+        Hibernate.initialize(game.getThemes());
+        Hibernate.initialize(game.getSimilarGames());
+    }
+
     @Transactional
     public void addToBacklog(Long gbId, Long userId) {
         User user = userRepository.findOne(userId);
@@ -91,7 +104,7 @@ public class DBService {
         }
         if (gameDTO.getName() != null){
         game.setName(gameDTO.getName());} else {
-            game.setName("No result");
+            game.setName("No result - try again!");
         }
         if (gameDTO.getDeck() != null) {
         game.setDeck(gameDTO.getDeck().substring(0, Math.min(gameDTO.getDeck().length(), 250)));}

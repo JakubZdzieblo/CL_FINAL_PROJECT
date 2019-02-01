@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.Platform;
 import pl.coderslab.entity.User;
+import pl.coderslab.repository.GameRepository;
 import pl.coderslab.repository.PlatformRepository;
 import pl.coderslab.repository.UserRepository;
 
@@ -218,6 +219,15 @@ public class DBPopulatePlatforms {
         user2.setGames(new ArrayList<>());
         user2.setName("Kub Bub");
         userRepository.save(user2);
+
+        User user3 = new User();
+        user3.setLogin("snake");
+        user3.setPassword(BCrypt.hashpw("12345", BCrypt.gensalt()));
+        user3.setEmail("kojima@mail.com");
+        user3.setComments(new ArrayList<>());
+        user3.setGames(new ArrayList<>());
+        user3.setName("Solid Snake");
+        userRepository.save(user3);
     }
 
 

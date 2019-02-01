@@ -77,14 +77,7 @@ public class HomeController {
     public String details(Model model, @RequestParam Long gbId){
         Game game = dbService.getGame(gbId);
         List<Comment> comments = commentRepository.findAllByGame(game);
-        Hibernate.initialize(game.getPlatforms());
-        Hibernate.initialize(game.getConcepts());
-        Hibernate.initialize(game.getGenres());
-        Hibernate.initialize(game.getGameObjects());
-        Hibernate.initialize(game.getLocations());
-        Hibernate.initialize(game.getPublishers());
-        Hibernate.initialize(game.getThemes());
-        Hibernate.initialize(game.getSimilarGames());
+        dbService.InitializeSublists(game);
         model.addAttribute("comments", comments);
         model.addAttribute("game", game);
         return("details");
