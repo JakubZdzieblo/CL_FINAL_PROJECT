@@ -284,6 +284,7 @@ public class DBService {
         platform.setName(platformDTO.getName());
         platform.setApi_detail_url(platformDTO.getApi_detail_url());
         platform.setSite_detail_url(platformDTO.getSite_detail_url());
+        platform.setAbbreviation(platformDTO.getAbbreviation());
         platform.setGames(new ArrayList<>());
 
         platformRepository.save(platform);
