@@ -15,7 +15,7 @@
             <c:when test="${(path eq '/otherBacklogs') or (path eq '/otherBacklog')}">
                 <c:set var="a3" value="active"/>
             </c:when>
-            <c:when test="${path eq '/filter'}">
+            <c:when test="${(path eq '/filter') or (path eq '/search')}">
                 <c:set var="a4" value="active"/>
             </c:when>
         </c:choose>

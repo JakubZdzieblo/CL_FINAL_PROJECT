@@ -12,17 +12,18 @@
     <a class="navbar-brand" href=""><h3>GAMING BACKLOG</h3></a>
 </nav>
 <div class="container">
+    <br><br>
     <div class="row justify-content-md-center">
     <div class=col-lg-auto">
-    <h4 class="text-center">LOGIN PLEASE</h4>
-    <form:form method="post" action="/login/check" modelAttribute="user">
+    <h4 class="text-center">LOGIN PLEASE</h4><br>
+    <form:form method="post" action="/login/check" modelAttribute="user" class="text-center">
         <form:input path="login" placeholder="Login"/><br>
         <form:errors path="login" cssStyle="color: lightcoral"/><BR>
         <form:password path="password" placeholder="Password"/><br>
         <form:errors path="password" cssStyle="color: lightcoral"/><BR>
         <form:button>LOGIN</form:button>
     </form:form>
-
+<br>
 <h4><a href="/login/register" class="text-center">REGISTER NEW USER</a></h4>
     <br><br>
     </div></div></div>

@@ -19,12 +19,14 @@
             <table class="table table-hover">
                 <tbody>
                 <c:forEach items="${users}" var="user">
-                <tr>
-                    <td class="text-center"><a href="otherBacklog?id=${user.id}">
-                        <button type="button" class="btn btn-secondary">${user.name}</button>
-                    </a>
-                    </td>
-                </tr>
+                    <c:if test="${user.id != sessionScope.user.id}">
+                    <tr>
+                        <td class="text-center"><a href="otherBacklog?id=${user.id}">
+                            <button type="button" class="btn btn-secondary">${user.name}</button>
+                        </a>
+                        </td>
+                    </tr>
+                    </c:if>
                 </c:forEach></tbody></table>
         </div>
     </div>

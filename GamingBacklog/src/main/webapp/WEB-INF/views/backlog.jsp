@@ -13,7 +13,7 @@
 <div class="container">
 
     <BR><BR>
-    <h3 class="text-center">Backlog of ${user.name}</h3>
+    <h3 class="text-center">Your backlog</h3>
     <BR><BR>
     <table class="table table-hover">
         <thead>
