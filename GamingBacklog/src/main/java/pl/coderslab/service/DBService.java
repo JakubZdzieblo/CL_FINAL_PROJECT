@@ -1,6 +1,5 @@
 package pl.coderslab.service;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.dto.*;
 import pl.coderslab.entity.*;
@@ -40,6 +39,9 @@ public class DBService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    GameReferenceRepository gameReferenceRepository;
 
     @Autowired
     GBQuery gbQuery;
@@ -150,10 +152,36 @@ public class DBService {
             themes.add(getThemeFromDTO(el));
         }}
         game.setThemes(themes);
+
+        List<GameReference> similarGames = new ArrayList<>();
+        if (gameDTO.getSimilar_games() != null){
+            for (GameDetailsSimilarGamesDTO el : gameDTO.getSimilar_games()) {
+                similarGames.add(getSimilarGamesFromDTO(el));
+            }}
+        game.setSimilarGames(similarGames);
         
         gameRepository.save(game);
 
         return game;
+
+    }
+
+    public GameReference getSimilarGamesFromDTO(GameDetailsSimilarGamesDTO similarGameDTO) {
+        GameReference similarGames = gameReferenceRepository.findByGbId(similarGameDTO.getId());
+        if (similarGames!=null){
+            return similarGames;
+        } else {
+            similarGames = new GameReference();
+        }
+        similarGames.setGbId(similarGameDTO.getId());
+        similarGames.setName(similarGameDTO.getName());
+        similarGames.setApi_detail_url(similarGameDTO.getApi_detail_url());
+        similarGames.setSite_detail_url(similarGameDTO.getSite_detail_url());
+        similarGames.setGames(new ArrayList<>());
+
+        gameReferenceRepository.save(similarGames);
+
+        return similarGames;
 
     }
 

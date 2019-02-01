@@ -42,7 +42,7 @@ public class Game {
     @ManyToMany
     private List<Publisher> publishers = new ArrayList<>();
     @ManyToMany
-    private List<Game> similar_games = new ArrayList<>();
+    private List<GameReference> similarGames = new ArrayList<>();
     @ManyToMany
     private List<Theme> themes = new ArrayList<>();
     @ManyToMany
@@ -165,12 +165,12 @@ public class Game {
         this.publishers = publishers;
     }
 
-    public List<Game> getSimilar_games() {
-        return similar_games;
+    public List<GameReference> getSimilarGames() {
+        return similarGames;
     }
 
-    public void setSimilar_games(List<Game> similar_games) {
-        this.similar_games = similar_games;
+    public void setSimilarGames(List<GameReference> similarGames) {
+        this.similarGames = similarGames;
     }
 
     public List<Theme> getThemes() {

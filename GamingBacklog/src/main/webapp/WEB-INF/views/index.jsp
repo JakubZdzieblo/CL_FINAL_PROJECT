@@ -46,8 +46,10 @@
         <div class="bs-component">
                 <div class="card mb-12">
                     <h3 class="card-header">${game.name}
+                        <c:if test="${game.gbId!=0}">
                         <a href="/addToBacklog?gbId=${game.gbId}">
-                            <button class="btn btn-primary float-right">Add to backlog</button></a></h3>
+                            <button class="btn btn-info float-right">Add to backlog</button></a>
+                        </c:if></h3>
                     <div class="card-body">
                         <h5 class="card-title">${game.deck}</h5>
                     </div>
@@ -62,7 +64,10 @@
                     </p>
                     </div>
                     <div class="card-body">
-                        <a href="/details?gbId=${game.gbId}" class="card-link">Game details</a>
+                        <a href="/details?gbId=${game.gbId}">
+                            <button class="btn btn-primary float-left">Game details</button></a>
+                        <a href="/index">
+                            <button class="btn btn-primary float-right">Reroll</button></a>
                     </div>
                 </div>
         </div>

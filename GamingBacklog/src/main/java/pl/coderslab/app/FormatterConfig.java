@@ -27,6 +27,7 @@ public class FormatterConfig implements WebMvcConfigurer {
         registry.addConverter(publisherConverter());
         registry.addConverter(themeConverter());
         registry.addConverter(userConverter());
+        registry.addConverter(gameReferenceConverter());
     }
 
     @Bean
@@ -78,6 +79,9 @@ public class FormatterConfig implements WebMvcConfigurer {
     public UserConverter userConverter(){
         return new UserConverter();
     }
+
+    @Bean
+    public GameReferenceConverter gameReferenceConverter(){return new GameReferenceConverter();}
 
 
 }

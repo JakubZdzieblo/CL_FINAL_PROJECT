@@ -84,6 +84,7 @@ public class HomeController {
         Hibernate.initialize(game.getLocations());
         Hibernate.initialize(game.getPublishers());
         Hibernate.initialize(game.getThemes());
+        Hibernate.initialize(game.getSimilarGames());
         model.addAttribute("comments", comments);
         model.addAttribute("game", game);
         return("details");
