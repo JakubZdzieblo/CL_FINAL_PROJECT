@@ -4,4 +4,10 @@
   <runtime>java8</runtime>
   <sessions-enabled>true</sessions-enabled>
   <application>gaming-backlog</application>
+  <env-variables>
+    <env-var name="gamingbacklog" value="regal-muse-230717:europe-west1:gamingbacklog" />
+    <env-var name="DB_USER" value="root" />
+    <env-var name="DB_PASS" value="coderslab" />
+    <env-var name="DB_NAME" value="gamingbacklog" />
+  </env-variables>
 </appengine-web-app>
