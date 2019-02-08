@@ -12,7 +12,7 @@ What it does:
 - Keeps data in local database so it doesn't have to download it again from GB
 - Validates and sanitizes the data from GB so that unpredictable results don't crash the app
 
-What is used:
+What is uses:
 
 - Java
 - Spring
