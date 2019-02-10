@@ -2,6 +2,9 @@
 
 Final project for the Coders Lab bootcamp.
 
+Live version on Heroku using ClearDB:
+https://gamingbacklog.herokuapp.com
+
 What it does:
 
 - Connects to GiantBomb API
@@ -23,8 +26,6 @@ What is uses:
 - JSTL
 - jBCrypt
 - Bootstrap
-
-I will try to put it live on some server soon, but until then here's how it looks like:
 
 Game details screen:
 ![

@@ -1,10 +1,11 @@
 package pl.coderslab.app;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
-import org.codehaus.jackson.map.ObjectMapper;
+
 import pl.coderslab.dto.*;
 
 import java.io.IOException;

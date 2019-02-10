@@ -1,7 +1,9 @@
 package pl.coderslab.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.varia.NullAppender;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+//import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import pl.coderslab.dto.*;
 
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.Random;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
-import org.codehaus.jackson.map.ObjectMapper;
+//import org.codehaus.jackson.map.ObjectMapper;
 import pl.coderslab.entity.Game;
 
 

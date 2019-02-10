@@ -1,10 +1,10 @@
 package pl.coderslab.app;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
-import org.codehaus.jackson.map.ObjectMapper;
 import pl.coderslab.dto.GamesSearchListElementDTO;
 import pl.coderslab.dto.GamesSearchResultDTO;
 
