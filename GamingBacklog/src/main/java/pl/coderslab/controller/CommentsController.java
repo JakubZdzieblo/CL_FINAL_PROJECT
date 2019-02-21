@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.HtmlUtils;
 import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.Game;
 import pl.coderslab.entity.User;
@@ -50,6 +51,7 @@ public class CommentsController {
         User user = (User) session.getAttribute("user");
         comment.setGame(game);
         comment.setUser(user);
+        comment.setText(HtmlUtils.htmlEscape(comment.getText()));
         commentRepository.save(comment);
         return "redirect:/details?gbId="+gbId;
     }
