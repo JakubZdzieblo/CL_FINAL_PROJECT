@@ -5,14 +5,11 @@
         version="2.1">
 <persistence-unit name="default">
     <properties>
-        <!--<property name="javax.persistence.jdbc.url"-->
-                  <!--value="jdbc:mysql://localhost:3306/gamingbacklog" />-->
-        <!--<property name="javax.persistence.jdbc.user" value="root" />-->
-        <!--<property name="javax.persistence.jdbc.password" value="coderslab" />-->
+
         <property name="javax.persistence.jdbc.url"
-                  value="jdbc:mysql://eu-cdbr-west-02.cleardb.net:3306/heroku_b297e36ef9430d6" />
-        <property name="javax.persistence.jdbc.user" value="bfbe3c60f362fb" />
-        <property name="javax.persistence.jdbc.password" value="1a6833d2" />
+                  value="jdbc:mysql://eu-cdbr-west-02.cleardb.net:3306/XXX" />
+        <property name="javax.persistence.jdbc.user" value="XXX" />
+        <property name="javax.persistence.jdbc.password" value="XXX" />
 
         <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
         <property name="javax.persistence.schema-generation.database.action"
