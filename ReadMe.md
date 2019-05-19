@@ -1,7 +1,5 @@
 **GAMING BACKLOG**
 
-Final project for the Coders Lab bootcamp.
-
 Live version on Heroku using ClearDB:
 https://gamingbacklog.herokuapp.com
 
